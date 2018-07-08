@@ -1,12 +1,25 @@
 {% extends "login_logout.html" %}
+{% load staticfiles %}
 {% block title %}Вход{% endblock %}
 
 {% block ll %}
     <h2>Вход</h2>
     <form action="" method="post">
-        {% include "generic/form.html" %}
-        <div class="submit-button"><input type="submit" value="Войти"></div>
+         <div class="form-group">
+                {% include "generic/form.html" %}
+         </div>
+         <div class="form-group">
+        <button type="submit" class="btn btn-default">Войти</button>
         <input type="hidden" name="next" value="{% url "main" %}">
-{#    "{{ next }}"#}
+          <div class="checkbox">
+            <label>
+              <input type="checkbox"> Запомнить
+            </label>
+          </div>
+         </div>
     </form>
+
+
+
 {% endblock %}
+

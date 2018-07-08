@@ -1,4 +1,5 @@
 {% extends "main.html" %}
+{#{% load staticfiles %}#}
 {% load bbcode_tags %}
 {#{% load comments %}#}
 {% block title %}{{ object.title }}{% endblock %}
@@ -21,13 +22,13 @@
   {% endwith %}
   <p><a href="{% url "blog_index" %}?page={{ pn }}{% if search %}&search={{ search }}{% endif %}{% if tag %}&tag={{ tag }}{% endif %}">Назад</a></p>
   <p>&nbsp;</p>
-  {% render_comment_list for object %}
+{#  {% render_comment_list for object %}#}
   <p>&nbsp;</p>
-  {% get_comment_form for object as form %}
-  <div class="form">
-    <form action="{% comment_form_target %}" method="post">
-      {% include "generic/form.html" %}
-      <input type="hidden" name="next" value="{% url "blog_detail" pk=object.pk %}?page={{ pn }}{% if search %}&search={{ search }}{% endif %}{% if tag %}&tag={{ tag }}{% endif %}">
-      <div class="submit-button"><input type="submit" name="submit" value="Отправить"></div>
-    </form>
+{#  {% get_comment_form for object as form %}#}
+{#  <div class="form">#}
+{#    <form action="{% comment_form_target %}" method="post">#}
+{#      {% include "generic/form.html" %}#}
+{#      <input type="hidden" name="next" value="{% url "blog_detail" pk=object.pk %}?page={{ pn }}{% if search %}&search={{ search }}{% endif %}{% if tag %}&tag={{ tag }}{% endif %}">#}
+{#      <div class="submit-button"><input type="submit" name="submit" value="Отправить"></div>#}
+{#    </form>#}
 {% endblock %}

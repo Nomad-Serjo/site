@@ -37,7 +37,7 @@ urlpatterns = [
     url(r'^categories/', include('categories.urls')),
     url(r'^goods/', include('goods.urls')),
     # url(r'^comments/', include("django.contrib.comments.urls")),
-    url(r'^goods/', include('blog.urls')),
+    url(r'^blog/', include('blog.urls')),
     url(r'^about/', AboutView.as_view(), name="about"),
     url(r'^contacts/', ContactsView.as_view(), name="contacts"),
     url(r'^howtobuy/', HowToBuyView.as_view(), name="howtobuy"),

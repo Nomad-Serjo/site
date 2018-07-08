@@ -4,45 +4,105 @@
     <link type="text/css" href="{% static "main.css" %}" rel="stylesheet">
 {% endblock %}
 {% block content %}
-    <div id="header">
-        <h1>Скания-Торг</h1>
-    <div>
-    <div id="leftmenu">
-        <ul>
-            {% url "main" as page_url %}
-            <li><a href="{{ page_url }}"{% if page_url == currnt_url %}
-            class="current"{% endif %}>Главная</a></li>
-            {% for object in categories %}
-                {% url "goods_index" pk=object.pk as page_url %}
-                <li{% if forloop.first %} class="indented"{% endif %}><a href="{{ page_url }}"{% if page_url == current_url %} class="current"{% endif %}>{{ object.name }}</a></li>
-            {% endfor %}
-            {% url "news_index" as page_url %}
-            <li class="indented"><a href="{{ page_url }}"{% if page_url == current_url %}
-            class="current"{% endif %}>Новости</a></li>
-        {% url "blog_index" as page_url %}
-            <li><a href="{{ page_url }}"{% if page_url == current_url %} class="current"{% endif %}>Блог</a></li>
-            {% url "guestbook" as page_url %}
-            <li><a href="{{ page_url }}"{% if page_url == currnt_url %}
-            class="current"{% endif %}>Гостевая</a></li>
-            {% url "contacts" as page_url %}
-            <li class="indented"><a href="{{ page_url }}"{% if page_url == current_url %} class="current"{% endif %}>Контакты</a></li>
-            {% url "howtobuy" as page_url %}
-            <li><a href="{{ page_url }}"{% if page_url == current_url %} class="current"{% endif %}>Оплата</a></li>
-            {% url "about" as page_url %}
-            <li><a href="{{ page_url }}"{% if page_url == current_url %} class="current"{% endif %}>О нас</a></li>
-            {% if user.is_authenticated %}
-                {% url "categories_edit" as page_url %}
-                <li class="indented"><a href="{{ page_url }}"{% if page_url == current_url %} class="current"{% endif %}>Категории</a></li>
-                <li{# class="indented"#}><a href="/admin/">Админка</a></li>
-                <li class="indented"><a href="{% url "logout" %}">Выйти</a></li>
-            {% endif %}
-        </ul>
-    </div>
-<div id="main">
-    {% block main %}
-    {% endblock %}
-</div>
-<div id="footer">
-    <p>Все права принадлежат разработчикам сайта.</p>
-</div>
+    <div class="container">
+        <div id="header">
+            		<!-- Header -->
+		<header id="header">
+			<!-- Top Header -->
+			<div id="top-header">
+				<div class="container">
+					<div class="header-links">
+						<ul>
+                        {% url "main" as page_url %}
+                        <li><a href="{{ page_url }}"{% if page_url == currnt_url %}
+                        class="current"{% endif %}>Главная</a></li>
+                        {% url "news_index" as page_url %}
+                        <li class="indented"><a href="{{ page_url }}"{% if page_url == current_url %}
+                        class="current"{% endif %}>Новости</a></li>
+                        {% url "blog_index" as page_url %}
+                        <li><a href="{{ page_url }}"{% if page_url == current_url %} class="current"{% endif %}>Блог</a></li>
+                        {% url "guestbook" as page_url %}
+                        <li><a href="{{ page_url }}"{% if page_url == currnt_url %}
+                        class="current"{% endif %}>Гостевая</a></li>
+                        {% url "contacts" as page_url %}
+                        <li class="indented"><a href="{{ page_url }}"{% if page_url == current_url %} class="current"{% endif %}>Контакты</a></li>
+                        {% url "howtobuy" as page_url %}
+                        <li><a href="{{ page_url }}"{% if page_url == current_url %} class="current"{% endif %}>Оплата</a></li>
+                        {% url "about" as page_url %}
+                        <li><a href="{{ page_url }}"{% if page_url == current_url %} class="current"{% endif %}>О нас</a></li>
+                        {% if user.is_authenticated %}
+                            {% url "categories_edit" as page_url %}
+                            <li class="indented"><a href="{{ page_url }}"{% if page_url == current_url %} class="current"{% endif %}>Категории</a></li>
+                            <li{# class="indented"#}><a href="/admin/">Админка</a></li>
+                            <li class="indented"><a href="{% url "logout" %}">Выйти</a></li>
+                            {% else %}
+                            <li><a href="{% url "login" %}"><i class="fa fa-sign-in"></i> Вход</a></li>
+                            {% endif %}
+
+						</ul>
+					</div>
+					<div class="header-social">
+						<ul>
+							<li><a href="https://ru-ru.facebook.com/scaniagroup/"><i class="fa fa-facebook"></i></a></li>
+							<li><a href="https://twitter.com/scaniagroup/"><i class="fa fa-twitter"></i></a></li>
+							<li><a href="https://plus.google.com/+scania"><i class="fa fa-google-plus"></i></a></li>
+							<li><a href="https://www.instagram.com/scaniagroup/"><i class="fa fa-instagram"></i></a></li>
+							<li><a href="https://www.youtube.com/channel/UCr7JOoXij1Vgq-6KOeB7_bA"><i class="fa fa-youtube"></i></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!-- /Top Header -->
+
+			<!-- Center Header -->
+			<div id="center-header">
+				<div class="container">
+                        <div class="col-lg-12 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-12 col-xs-12">
+                        <div class="header-logo">
+                            <a href="https://www.scania.com/world/#/" class="logo"><img src="{% static "img/scania-logo-1.png"%}" alt=""></a>
+                        </div>
+                        </div>
+
+				</div>
+			</div>
+			<!-- /Center Header -->
+
+			<!-- Nav Header -->
+			<div id="nav-header">
+				<div class="container">
+                    <nav class="collapse navbar-collapse" id="main-nav">
+						<div class="nav-logo">
+							<a href="#" class="logo"><img src="{% static "img/scania-logo.jpg"%}" alt=""></a>
+						</div>
+						<ul class="main-nav nav navbar-nav">
+                        {% for object in categories %}
+                            {% url "goods_index" pk=object.pk as page_url %}
+                            <li{% if forloop.first %} class="indented"{% endif %}><a href="{{ page_url }}"{% if page_url == current_url %} class="current"{% endif %}>{{ object.name }}</a></li>
+                        {% endfor %}
+						</ul>
+                    </nav>
+                    <div class="button-nav">
+						<button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-nav"><i class="fa fa-bars"></i></button>
+				    </div>
+			    </div>
+            </div>
+			<!-- /Nav Header -->
+		</header>
+		<!-- /Header -->
+        </div>
+
+        <div class="row">
+              <div id="main">
+                {% block main %}
+                {% endblock %}
+              </div>
+        </div>
+        <div>
+
+
+            <div id="footer">
+                <p>2018</p>
+            </div>
 {% endblock %}
+
+

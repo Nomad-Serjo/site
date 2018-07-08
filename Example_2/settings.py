@@ -20,12 +20,19 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'fg=k^v+g!8^@2uzb)e4co*fxn7kxuoz6s$9@5+@-vl&%hsckt@'
+try:
+    from secret_settings import SECRET_KEY
+except ImportError:
+    from django.utils.crypto import get_random_string
+    SECRET_KEY = get_random_string(50, 'abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)')
+    with open(os.path.join(BASE_DIR, 'some_package', 'secret_key_file.py'), 'w') as key_file:
+        key_file.write("SECRET_KEY = '{key}'".format(key=SECRET_KEY))
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://www.scania-zapchast.ru', 'localhost', 'localhost:8080', 'https://176.193.26.91', 'https://192.168.1.100']
 
 
 # Application definition

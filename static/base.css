@@ -16,12 +16,20 @@ form.field .help {
 .form-field .label {
     margin-bottom: 2px;
 }
+
+.form-field .control {
+    width: 100%;
+    background-color: #FF0000;
+    color: #5cb85c;
+}
 .form-field .control input[type=name],
 .form-field .control input[type=password],
 .form-field .control input[type=number],
 .form-field .control input[type=file],
 .form-field .control textarea, .form-field .control select {
     width: 100%;
+    background-color: #FF0000;
+    color: #5cb85c;
 }
 .submit-button {
     width: 100%;

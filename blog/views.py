@@ -7,6 +7,7 @@ from django.views.generic.edit import CreateView
 from django.core.urlresolvers import reverse_lazy, reverse
 from django.views.generic.detail import DetailView
 
+from django.http import Http404
 from blog.forms import BlogForm
 from generic.controllers import PageNumberView
 from blog.models import Blog
@@ -85,7 +86,7 @@ class BlogUpdate(PageNumberView, TemplateView, SearchMixin, PageNumberMixin):
             self.form = BlogForm(request.POST, instance = self.blog)
             if self.form.is_valid():
                 self.form.save()
-                messages.add_message(request, messages.SUCCESS, "Статья успешно изменена")
+                # messages.add_message(request, messages.SUCCESS, "Статья успешно изменена")
                 redirect_url = reverse("blog_index") + "?page=" + self.request.GET["page"]
                 try:
                   redirect_url = redirect_url + "&search=" + self.request.GET["search"]
@@ -118,20 +119,23 @@ class BlogDelete(PageNumberView, TemplateView, SearchMixin, PageNumberMixin):
         context["blog"] = self.blog
         return context
 
+    # http: // 127.0.0.1: 8000 / blog /?page = 1
     def post(self, request, *args, **kwargs):
-        self.blog = Blog.objects.get(pk = self.kwargs["pk"])
+        self.blog = Blog.objects.get(pk=self.kwargs["pk"])
         if self.blog.user == request.user or request.user.is_superuser:
             self.blog.delete()
-            messages.add_message(request, messages.SUCCESS, "Статья успешно удалена")
+            # messages.add_message(request, messages.SUCCESS, "Статья успешно удалена")
             redirect_url = reverse("blog_index") + "?page=" + self.request.GET["page"]
             try:
                 redirect_url = redirect_url + "&search=" + self.request.GET["search"]
             except KeyError:
                 pass
             try:
-             redirect_url = redirect_url + "&tag=" + self.request.GET["tag"]
+                redirect_url = redirect_url + "&tag=" + self.request.GET["tag"]
             except KeyError:
                 pass
             return redirect(redirect_url)
         else:
             return redirect(reverse("login"))
+
+

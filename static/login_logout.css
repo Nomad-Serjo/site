@@ -1,10 +1,16 @@
 @charset "utf-8";
 #ll {
-    width: 160px;
+    width: 300px;
     margin: 50px auto 0px auto;
     padding: 30px;
     border: 1px solid #AAAAAA;
 }
 #ll h2 {
     margin-top: 0px;
+}
+
+.form-field .control .field{
+    width: 100%;
+    background-color: #FF0000;
+    color: #5cb85c;
 }

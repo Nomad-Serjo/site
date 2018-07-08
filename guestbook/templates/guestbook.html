@@ -1,4 +1,5 @@
 {% extends "main.html" %}
+{% load staticfiles %}
 {% block title %}Гостевая книга{% endblock %}
 {% block main %}
   {% include "generic/messages.html" %}
@@ -6,7 +7,7 @@
   <div class="form bottom-indent">
     <form action="" method="post">
       {% include "generic/form.html" %}
-      <div class="submit-button"><input type="submit" value="Добавить"></div>
+      <button class="btn btn-default" type="submit">Добавить</button>
     </form>
   </div>
   {% if object_list.count > 0 %}
